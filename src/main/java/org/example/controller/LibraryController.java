@@ -16,13 +16,18 @@ public class LibraryController {
         this.libraryDAO = libraryDAO;
     }
     @GetMapping
+    public String firstWindows(){
+        return "/library/index";
+    }
+
+    @GetMapping("/book")
     public String indexBook(Model model){
-        model.addAttribute("book", libraryDAO.getFullBock());
+        model.addAttribute("books", libraryDAO.getFullBock());
         return "/library/book";
     }
-    @GetMapping
+    @GetMapping("/person")
     public String indexPerson(Model model){
-        model.addAttribute("person", libraryDAO.getFullPerson());
+        model.addAttribute("people", libraryDAO.getFullPerson());
         return "/library/person";
     }
 

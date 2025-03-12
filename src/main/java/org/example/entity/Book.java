@@ -5,16 +5,27 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 public class Book {
+    private int book_id;
     @Size(min = 4, max = 100, message = "Book name is not correct!")
     private String bookName;
     @Size(min = 4, max = 100, message = "Author name is not correct!")
     private String author;
     @Min(value = 0, message = "Wrong year!")
     private int year;
-    public Book(String bookName, String author, int year){
+    public Book(int book_id,String bookName, String author, int year){
+        this.book_id = book_id;
         this.bookName = bookName;
         this.author = author;
         this.year = year;
+    }
+    public Book(){}
+
+    public int getBook_id() {
+        return book_id;
+    }
+
+    public void setBook_id(int book_id) {
+        this.book_id = book_id;
     }
 
     public void setAuthor(String author) {

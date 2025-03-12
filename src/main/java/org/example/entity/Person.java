@@ -4,14 +4,24 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 public class Person {
+    private int id;
     @Size(min = 15, max = 100, message = "Fill name is not correct!")
     private String fullName;
     @Min(value = 0, message = "yearOfBirth it not correct!")
     private int yearOfBirth;
     public Person(){}
-    public Person(String fullName, int yearOfBirth){
+    public Person(int id, String fullName, int yearOfBirth){
+        this.id = id;
         this.fullName = fullName;
         this.yearOfBirth = yearOfBirth;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setFullName(String fullName) {
