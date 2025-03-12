@@ -10,6 +10,12 @@
 <p th:text="${people.getFullName()}">Value</p>
 <p th:text="${people.getYearOfBirth()}">Value</p>
 <br/> <hr/><hr/>
-<a href="/library/person/newPerson">Creat new Person</a>
+<a th:href="@{/library/person/{id}/edit(id=${people.getId()})}"> Edit </a>
+<br/>
+<form th:method="DELETE" th:accept="@{/library/{id}(id=${people.getId()})}">
+    <input type="submit" value="Delete">
+    <a href="/library/person/newPerson">Creat new book</a>
+</form>
+<hr/><hr/>
 </body>
 </html>

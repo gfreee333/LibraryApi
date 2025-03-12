@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import org.example.dao.BookDAO;
+import org.example.dao.PersonDAO;
 import org.example.entity.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import javax.validation.Valid;
 @RequestMapping("/library/book")
 public class BookController {
     private final BookDAO bookDAO;
+
     @Autowired
     public BookController(BookDAO bookDAO) {
         this.bookDAO = bookDAO;
@@ -34,7 +36,23 @@ public class BookController {
     }
     @PostMapping
     public String createBook(@ModelAttribute("book") @Valid Book book){
-        bookDAO.saveBock(book);
+        bookDAO.saveBook(book);
+        return "redirect:/library/book";
+    }
+    @DeleteMapping("/{book_id}")
+    public String deleteBook(@PathVariable("book_id") int book_id){
+        bookDAO.deleteBook(book_id);
+        return "redirect:/library/book";
+    }
+    @GetMapping("/{book_id}/edit")
+    public String edit(Model model, @PathVariable("book_id") int book_id){
+        model.addAttribute("book",bookDAO.showBock(book_id));
+        return "/library/book/edit";
+    }
+    @PatchMapping("/{book_id}")
+    public String editBook(@ModelAttribute("book") @Valid Book book,
+                           @PathVariable("book_id") int book_id){
+        bookDAO.editBook(book_id, book);
         return "redirect:/library/book";
     }
 

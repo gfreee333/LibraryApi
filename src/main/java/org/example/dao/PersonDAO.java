@@ -29,4 +29,11 @@ public class PersonDAO {
                 person.getFullName(),
                 person.getYearOfBirth());
     }
+    public void editPerson(int id, Person person){
+       jdbcTemplate.update("update person set fullname=?,yearofbirth=? where id =?",
+               person.getFullName(),person.getYearOfBirth(),id);
+    }
+    public void deletePerson(int id){
+        jdbcTemplate.update("delete from person where id = ?", id);
+    }
 }

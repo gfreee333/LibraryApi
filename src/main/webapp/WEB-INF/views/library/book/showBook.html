@@ -10,7 +10,12 @@
 <p th:text="${books.getBookName()}">Value</p>
 <p th:text="${books.getAuthor()}">Value</p>
 <p th:text="${books.getYear()}">Value</p>
-<br/> <hr/><hr/>
-<a href="/library/book/newBook">Creat new book</a>
+<p th:text="${books.getPerson_id() != null ? books.getPerson_id() : 'No Person Assigned'}">Value</p>
+<a th:href="@{/library/book/{book_id}/edit(book_id=${books.getBook_id()})}">Edit</a>
+<form th:method="DELETE" th:accept="@{/library/{book_id}(book_id=${books.getBook_id()})}">
+    <input type="submit" value="Delete">
+    <a href="/library/book/newBook">Creat new book</a>
+</form>
+<hr/><hr/>
 </body>
 </html>
