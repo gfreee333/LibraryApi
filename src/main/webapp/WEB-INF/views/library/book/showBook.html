@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book information</title>
+</head>
+<body>
+<br/> <hr/><hr/>
+<p th:text="${books.getBook_id()}">Value</p>
+<p th:text="${books.getBookName()}">Value</p>
+<p th:text="${books.getAuthor()}">Value</p>
+<p th:text="${books.getYear()}">Value</p>
+<br/> <hr/><hr/>
+<a href="/library/book/newBook">Creat new book</a>
+</body>
+</html>

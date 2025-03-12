@@ -26,5 +26,15 @@ public class LibraryDAO {
         return jdbcTemplate.query("select* from book",
                 new BeanPropertyRowMapper<>(Book.class));
     }
+    public Person showPerson(int id){
+    return jdbcTemplate.query("select *from person where id = ?",
+            new Object[]{id}, new BeanPropertyRowMapper<>(Person.class))
+            .stream().findAny().orElse(null);
+    }
+    public Book showBock(int book_id){
+        return jdbcTemplate.query("select *from book where book_id =?",
+                new Object[]{book_id}, new BeanPropertyRowMapper<>(Book.class))
+                .stream().findAny().orElse(null);
+    }
 
 }

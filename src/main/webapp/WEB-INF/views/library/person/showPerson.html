@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Person information</title>
+</head>
+<body>
+<br/> <hr/><hr/>
+<p th:text="${people.getId()}">Value</p>
+<p th:text="${people.getFullName()}">Value</p>
+<p th:text="${people.getYearOfBirth()}">Value</p>
+<br/> <hr/><hr/>
+<a href="/library/person/newPerson">Creat new Person</a>
+</body>
+</html>
