@@ -12,13 +12,23 @@ public class Book {
     private String author;
     @Min(value = 0, message = "Wrong year!")
     private int year;
-    public Book(int book_id,String bookName, String author, int year){
+    private Integer person_id;
+    public Book(int book_id,String bookName, String author, int year, Integer person_id){
         this.book_id = book_id;
         this.bookName = bookName;
         this.author = author;
         this.year = year;
+        this.person_id = person_id;
     }
     public Book(){}
+
+    public void setPerson_id(Integer person_id) {
+        this.person_id = person_id;
+    }
+
+    public Integer getPerson_id() {
+        return person_id;
+    }
 
     public int getBook_id() {
         return book_id;

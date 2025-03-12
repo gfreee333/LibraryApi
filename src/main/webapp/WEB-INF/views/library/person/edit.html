@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit person</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/library/person/{id}(id=${person.getId()})}" th:object="${person}">
+    <input type="hidden" name="_method" value="PATCH"/>
+    <label for="fullname">Enter full name: </label>
+    <input type="text" th:field="*{fullName}" id="fullname"/>
+    <br/>
+    <label for="yearofbirth">Enter year of birth: </label>
+    <input type="text" th:field="*{yearOfBirth}" id="yearofbirth"/>
+    <br/>
+    <input type="submit" value="Update!"/>
+</body>
+</html>
