@@ -1,16 +1,15 @@
 package org.example.entity;
-
-
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class Book {
     private int book_id;
-    @Size(min = 4, max = 100, message = "Book name is not correct!")
+    @Size(min = 4, max = 100, message = "Ошибка в название книги!")
     private String bookName;
-    @Size(min = 4, max = 100, message = "Author name is not correct!")
+    @Size(min = 4, max = 100, message = "Ошибка в имени автора!")
     private String author;
-    @Min(value = 0, message = "Wrong year!")
+    @Min(value = 0, message = "Значения поля не должно быть 0!")
     private int year;
     private Integer person_id;
     public Book(int book_id,String bookName, String author, int year, Integer person_id){

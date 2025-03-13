@@ -1,13 +1,11 @@
 package org.example.controller;
 
 import org.example.dao.BookDAO;
-import org.example.dao.PersonDAO;
 import org.example.entity.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 
 @Controller
@@ -27,6 +25,8 @@ public class BookController {
     @GetMapping("/{book_id}")
     public String showBook(@PathVariable("book_id") int book_id, Model model){
         model.addAttribute("books", bookDAO.showBock(book_id));
+        model.addAttribute("person",bookDAO.getPersonByPersonId(book_id));
+        model.addAttribute("persons",bookDAO.getAllPerson());
         return "library/book/showBook";
     }
     @GetMapping("/newBook")
@@ -50,10 +50,19 @@ public class BookController {
         return "/library/book/edit";
     }
     @PatchMapping("/{book_id}")
-    public String editBook(@ModelAttribute("book") @Valid Book book,
-                           @PathVariable("book_id") int book_id){
+    public String editBook(@ModelAttribute("book") @Valid Book book, @PathVariable("book_id") int book_id){
         bookDAO.editBook(book_id, book);
         return "redirect:/library/book";
+    }
+    @PostMapping("/{book_id}/detach")
+    public String detach(@PathVariable("book_id") int book_id){
+        bookDAO.detachPerson(book_id);
+        return "redirect:/library/book/" + book_id;
+    }
+    @PostMapping("/{book_id}/install")
+    public String install(@PathVariable("book_id") int book_id, @RequestParam("personId") int personId){
+        bookDAO.installPerson(personId, book_id);
+        return "redirect:/library/book/"+book_id;
     }
 
 }
