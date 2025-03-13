@@ -6,15 +6,35 @@
 </head>
 <body>
 <br/> <hr/><hr/>
-<p th:text="${books.getBook_id()}">Value</p>
-<p th:text="${books.getBookName()}">Value</p>
-<p th:text="${books.getAuthor()}">Value</p>
-<p th:text="${books.getYear()}">Value</p>
-<p th:text="${books.getPerson_id() != null ? books.getPerson_id() : 'No Person Assigned'}">Value</p>
+<h2> |Книга| </h2>
+<p th:text="'Id книги: ' + ${books.getBook_id()}">Value</p>
+<p th:text="'Название книги: ' + ${books.getBookName()}">Value</p>
+<p th:text="'Автор книги: ' + ${books.getAuthor()}">Value</p>
+<p th:text="'Год издания: '+${books.getYear()}">Value</p>
+<br/> <hr/><hr/>
+<div th:if="${person != null}">
+    <h2>Книга закреплена за пользователем:</h2>
+    <p th:text="'ФИО: '+${person.getFullName()}">Value</p>
+    <form th:method="post" th:action="@{/library/book/{book_id}/detach(book_id=${books.getBook_id()})}">
+        <input type="submit" value="Открепить пользователя"/>
+    </form>
+    <p th:text="'Дата рождения: '+${person.getYearOfBirth()}">Value</p>
+</div>
+<div th:unless="${person != null}">
+    <p>Книга свободна.</p>
+    <form method="post" th:action="@{/library/book/{book_id}/install(book_id=${books.getBook_id()})}">
+        <label for="personId">Выбрать человека: </label>
+        <select id="personId" name="personId">
+            <option th:each="person : ${persons}" th:value="${person.getId()}" th:text="${person.getFullName()}"></option>
+        </select>
+        <button type="submit">Установить пользователя</button>
+    </form>
+</div>
+
 <a th:href="@{/library/book/{book_id}/edit(book_id=${books.getBook_id()})}">Edit</a>
 <form th:method="DELETE" th:accept="@{/library/{book_id}(book_id=${books.getBook_id()})}">
     <input type="submit" value="Delete">
-    <a href="/library/book/newBook">Creat new book</a>
+    <a href="/library/book/newBook">Создать новую книгу</a>
 </form>
 <hr/><hr/>
 </body>

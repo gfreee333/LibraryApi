@@ -7,13 +7,12 @@
 <body>
 
 <form th:method="post" th:action="@{/library/person}" th:object="${people}">
-    <label for="fullName">Enter full name: </label>
-    <input type="text" th:field="*{fullName}" id="fullName">
-    <br/>
-    <label for="yearOfBirth">Enter year: </label>
+    <label for="fullName">Введите ФИО: </label>
+    <input type="text" th:field="*{fullName}" id="fullName"><br/>
+    <label for="yearOfBirth">Введите год рождения: </label>
     <input type="text" th:field="*{yearOfBirth}" id="yearOfBirth">
     <br/>
-    <input type="submit" value="Create!">
+    <input type="submit" value="Создать нового пользователя!">
 </form>
 </body>
 </html>

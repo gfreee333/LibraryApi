@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import org.example.dao.BookDAO;
 import org.example.dao.PersonDAO;
 import org.example.entity.Person;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import javax.validation.Valid;
 @RequestMapping("/library/person")
 public class PersonController {
     private final PersonDAO personDAO;
+
     @Autowired
     public PersonController(PersonDAO personDAO) {
         this.personDAO = personDAO;
@@ -25,8 +27,10 @@ public class PersonController {
     @GetMapping("/{id}")
     public String showPerson(@PathVariable("id") int id, Model model){
         model.addAttribute("people", personDAO.showPerson(id));
+        model.addAttribute("books",personDAO.getBooksByPersonId(id));
         return "library/person/showPerson";
     }
+
     @GetMapping("/newPerson")
     public String newPersonMet(Model model){
         model.addAttribute("people",new Person());
@@ -43,8 +47,7 @@ public class PersonController {
         return "/library/person/edit";
     }
     @PatchMapping("/{id}")
-    public String editPerson(@ModelAttribute("person") @Valid Person person,
-                             @PathVariable("id") int id){
+    public String editPerson(@ModelAttribute("person") @Valid Person person, @PathVariable("id") int id){
        personDAO.editPerson(id,person);
        return "redirect:/library/person";
     }

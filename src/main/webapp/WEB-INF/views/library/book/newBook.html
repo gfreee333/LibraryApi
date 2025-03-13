@@ -6,14 +6,17 @@
 </head>
 <body>
 <form th:method="post" th:action="@{/library/book}" th:object="${book}">
-    <label for="bookName">Enter book name: </label>
+    <label for="bookName">Введите название книги: </label>
     <input type="text" th:field="*{bookName}" id="bookName">
+    <div style="color:red" th:if="${#fields.hasErrors('bookName')}" th:error = "*{bookName}">Name error</div>
     <br/>
-    <label for="author">Enter book author: </label>
+    <label for="author">Введите ФИО автора книги: </label>
     <input type="text" th:field="*{author}" id="author">
+    <div style="color:red" th:if="${#fields.hasErrors('author')}" th:error = "*{author}">Name error</div>
     <br/>
-    <label for="year">Enter book year: </label>
+    <label for="year">Введите год издания книги: </label>
     <input type="text" th:field="*{year}" id="year">
+    <div style="color:red" th:if="${#fields.hasErrors('year')}" th:error = "*{year}">Name error</div>
     <br/>
     <input type="submit" value="Create!">
 </form>

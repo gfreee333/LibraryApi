@@ -7,19 +7,17 @@
 <body>
 <form th:method="POST" th:action="@{/library/book/{book_id}(book_id=${book.getBook_id()})}" th:object="${book}">
 <input type="hidden" name="_method" value="PATCH"/>
-<label for="bookName">Enter book name: </label>
-<input type="text" th:field="*{bookName}" id="bookName"/>
-<br/>
-<label for="author">Enter book author: </label>
+<label for="bookName">Введите название книги: </label>
+<input type="text" th:field="*{bookName}" id="bookName"/><br/>
+<label for="author">Введите ФИО автора книги: </label>
 <input type="text" th:field="*{author}" id="author"/>
-<br/>
-<label for="year">Enter year book: </label>
+  <br/>
+<label for="year">Введите год издания книги: </label>
     <input type="text" th:field="*{year}" id="year">
     <br/>
-<label for="person_id"> Enter person Id: </label>
+<label for="person_id"> Назначить: </label>
     <input type="text" th:field="*{person_id}" id="person_id">
-<input type="submit" value="Update!"/>
+    <input type="submit" value="Update!"/>
 </form>
-
 </body>
 </html>

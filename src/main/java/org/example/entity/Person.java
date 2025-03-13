@@ -1,13 +1,13 @@
 package org.example.entity;
 
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class Person {
     private int id;
-    @Size(min = 15, max = 100, message = "Fill name is not correct!")
     private String fullName;
-    @Min(value = 0, message = "yearOfBirth it not correct!")
+    @Min(value = 0, message = "Не правильный год рождения!")
     private int yearOfBirth;
     public Person(){}
     public Person(int id, String fullName, int yearOfBirth){
